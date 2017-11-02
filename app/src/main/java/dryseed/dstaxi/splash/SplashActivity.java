@@ -1,11 +1,14 @@
 package dryseed.dstaxi.splash;
 
+import android.content.Intent;
 import android.graphics.drawable.AnimatedVectorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 
+import dryseed.dstaxi.main.MainActivity;
 import dryseed.dstaxi.R;
 
 public class SplashActivity extends AppCompatActivity {
@@ -20,5 +23,16 @@ public class SplashActivity extends AppCompatActivity {
             logo.setImageDrawable(anim1);
             anim1.start();
         }
+
+        /**
+         * 延时 3 秒然后跳转到 main 页面
+         */
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                finish();
+            }
+        }, 3000) ;
     }
 }
