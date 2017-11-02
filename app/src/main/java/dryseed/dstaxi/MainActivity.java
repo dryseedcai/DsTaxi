@@ -1,4 +1,4 @@
-package plugin.dryseed.dstaxi2;
+package dryseed.dstaxi;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
