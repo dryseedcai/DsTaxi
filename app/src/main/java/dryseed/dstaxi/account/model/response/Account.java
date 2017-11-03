@@ -1,4 +1,4 @@
-package dryseed.dstaxi.account.response;
+package dryseed.dstaxi.account.model.response;
 
 /**
  * Created by caiminming on 2017/11/2.

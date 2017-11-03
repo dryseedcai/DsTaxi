@@ -8,8 +8,8 @@ import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
 
-import dryseed.dstaxi.main.MainActivity;
 import dryseed.dstaxi.R;
+import dryseed.dstaxi.main.view.MainActivity;
 
 public class SplashActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package dryseed.dstaxi.account.response;
+package dryseed.dstaxi.account.model.response;
 
 
 import dryseed.dstaxi.common.http.biz.BaseBizResponse;

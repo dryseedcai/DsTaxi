@@ -1,4 +1,4 @@
-package dryseed.dstaxi.account;
+package dryseed.dstaxi.account.view;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -13,8 +13,9 @@ import android.widget.EditText;
 import dryseed.dstaxi.R;
 import dryseed.dstaxi.common.util.FormatUtil;
 
+
 /**
- * Created by caiminming on 2017/11/2.
+ * Created by caiminming on 2017/11/3.
  */
 
 public class PhoneInputDialog extends Dialog {
@@ -29,6 +30,7 @@ public class PhoneInputDialog extends Dialog {
 
     public PhoneInputDialog(Context context, int theme) {
         super(context, theme);
+
     }
 
     @Override
@@ -41,7 +43,6 @@ public class PhoneInputDialog extends Dialog {
     }
 
     private void initListener() {
-
         mButton = (Button) findViewById(R.id.btn_next);
         mButton.setEnabled(false);
         mPhone = (EditText) findViewById(R.id.phone);
@@ -62,15 +63,15 @@ public class PhoneInputDialog extends Dialog {
                 check();
             }
         });
-
         // 按钮注册监听
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dismiss();
+
                 String phone = mPhone.getText().toString();
                 SmsCodeDialog dialog = new SmsCodeDialog(getContext(), phone);
                 dialog.show();
+                PhoneInputDialog.this.dismiss();
 
             }
         });
@@ -88,6 +89,8 @@ public class PhoneInputDialog extends Dialog {
         String phone = mPhone.getText().toString();
         boolean legal = FormatUtil.checkMobile(phone);
         mButton.setEnabled(legal);
+
     }
+
 
 }
