@@ -195,7 +195,6 @@ public class VerificationCodeInput extends ViewGroup {
         }
         Log.d(TAG, "checkAndCommit:" + stringBuilder.toString());
         if (full) {
-
             if (listener != null) {
                 listener.onComplete(stringBuilder.toString());
                 setEnabled(false);
@@ -219,7 +218,6 @@ public class VerificationCodeInput extends ViewGroup {
     }
 
     @Override
-
     public LayoutParams generateLayoutParams(AttributeSet attrs) {
         return new LinearLayout.LayoutParams(getContext(), attrs);
     }
@@ -263,7 +261,6 @@ public class VerificationCodeInput extends ViewGroup {
             int cb = ct + cHeight;
             child.layout(cl, ct, cr, cb);
         }
-
 
     }
 

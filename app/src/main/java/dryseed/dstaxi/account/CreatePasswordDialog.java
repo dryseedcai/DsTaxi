@@ -42,7 +42,7 @@ import dryseed.dstaxi.common.util.ToastUtil;
 
 public class CreatePasswordDialog extends Dialog {
 
-    private  static final String TAG = "CreatePasswordDialog";
+    private static final String TAG = "CreatePasswordDialog";
     private static final int REGISTER_SUC = 1;
     private static final int SERVER_FAIL = 100;
     private static final int LOGIN_SUC = 2;
@@ -56,6 +56,7 @@ public class CreatePasswordDialog extends Dialog {
     private IHttpClient mHttpClient;
     private String mPhoneStr;
     private MyHandler mHandler;
+
     /**
      * 接收子线程消息的 Handler
      */
@@ -63,9 +64,11 @@ public class CreatePasswordDialog extends Dialog {
 
         // 软引用
         SoftReference<CreatePasswordDialog> codeDialogRef;
+
         public MyHandler(CreatePasswordDialog codeDialog) {
             codeDialogRef = new SoftReference<CreatePasswordDialog>(codeDialog);
         }
+
         @Override
         public void handleMessage(Message msg) {
             CreatePasswordDialog dialog = codeDialogRef.get();
@@ -87,6 +90,7 @@ public class CreatePasswordDialog extends Dialog {
 
         }
     }
+
     public CreatePasswordDialog(Context context, String phone) {
         this(context, R.style.Dialog);
         // 上一个页面传来的手机号
@@ -150,9 +154,6 @@ public class CreatePasswordDialog extends Dialog {
     }
 
 
-
-
-
     /**
      * 提交注册
      */
@@ -174,7 +175,7 @@ public class CreatePasswordDialog extends Dialog {
                     Log.d(TAG, response.getData());
                     if (response.getCode() == BaseResponse.STATE_OK) {
                         BaseBizResponse bizRes = JSON.parseObject(response.getData(), BaseBizResponse.class);
-                                //new Gson().fromJson(response.getData(), BaseBizResponse.class);
+                        //new Gson().fromJson(response.getData(), BaseBizResponse.class);
                         if (bizRes.getCode() == BaseBizResponse.STATE_OK) {
                             mHandler.sendEmptyMessage(REGISTER_SUC);
                         } else {
@@ -191,6 +192,7 @@ public class CreatePasswordDialog extends Dialog {
 
     /**
      * 检查密码输入
+     *
      * @return
      */
     private boolean checkPassword() {
@@ -213,9 +215,6 @@ public class CreatePasswordDialog extends Dialog {
         return true;
     }
 
-
-
-
     public void showOrHideLoading(boolean show) {
         if (show) {
             mLoading.setVisibility(View.VISIBLE);
@@ -227,12 +226,10 @@ public class CreatePasswordDialog extends Dialog {
 
     }
 
-
     /**
-     *  处理注册成功
+     * 处理注册成功
      */
     public void showRegisterSuc() {
-
         mLoading.setVisibility(View.VISIBLE);
         mBtnConfirm.setVisibility(View.GONE);
         mTips.setVisibility(View.VISIBLE);
@@ -241,8 +238,8 @@ public class CreatePasswordDialog extends Dialog {
                 .getColor(R.color.color_text_normal));
         mTips.setText(getContext()
                 .getString(R.string.register_suc_and_loging));
-        // 请求网络，完成自动登录
 
+        // 请求网络，完成自动登录
         new Thread() {
             @Override
             public void run() {
@@ -257,7 +254,7 @@ public class CreatePasswordDialog extends Dialog {
                 Log.d(TAG, response.getData());
                 if (response.getCode() == BaseResponse.STATE_OK) {
                     LoginResponse bizRes = JSON.parseObject(response.getData(), LoginResponse.class);
-                            //new Gson().fromJson(response.getData(), LoginResponse.class);
+                    //new Gson().fromJson(response.getData(), LoginResponse.class);
                     if (bizRes.getCode() == BaseBizResponse.STATE_OK) {
                         // 保存登录信息
                         Account account = bizRes.getData();

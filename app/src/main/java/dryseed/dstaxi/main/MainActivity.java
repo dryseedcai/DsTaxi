@@ -47,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
      * 检查用户是否登录
      */
     private void checkLoginState() {
-
         // 获取本地登录信息
         SharedPreferencesDao dao = new SharedPreferencesDao(DsApplication.getInstance(), SharedPreferencesDao.FILE_ACCOUNT);
         final Account account = (Account) dao.get(SharedPreferencesDao.KEY_ACCOUNT, Account.class);
@@ -64,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (!tokenValid) {
+            // 过期，弹出登录界面
             showPhoneInputDialog();
         } else {
             // 请求网络，完成自动登录
@@ -89,8 +89,7 @@ public class MainActivity extends AppCompatActivity {
                             MainActivity.this.runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    ToastUtil.show(MainActivity.this,
-                                            getString(R.string.login_suc));
+                                    ToastUtil.show(MainActivity.this, getString(R.string.login_suc));
                                 }
                             });
                         }
@@ -106,8 +105,7 @@ public class MainActivity extends AppCompatActivity {
                         MainActivity.this.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                ToastUtil.show(MainActivity.this,
-                                        getString(R.string.error_server));
+                                ToastUtil.show(MainActivity.this, getString(R.string.error_server));
                             }
                         });
                     }

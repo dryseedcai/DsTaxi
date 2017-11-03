@@ -56,7 +56,6 @@ public class SmsCodeDialog extends Dialog {
     private CountDownTimer mCountDownTimer = new CountDownTimer(10000, 1000) {
         @Override
         public void onTick(long millisUntilFinished) {
-
             mResentBtn.setEnabled(false);
             mResentBtn.setText(String.format(getContext().getString(R.string.after_time_resend), millisUntilFinished / 1000));
         }
@@ -89,12 +88,10 @@ public class SmsCodeDialog extends Dialog {
             // 处理UI 变化
             switch (msg.what) {
                 case SmsCodeDialog.SMS_SEND_SUC:
-
                     dialog.showSendState(true);
                     break;
                 case SmsCodeDialog.SMS_SEND_FAIL:
                     dialog.showSendState(false);
-
                     break;
                 case SmsCodeDialog.SMS_CHECK_SUC:
                     //验证码校验成功
@@ -114,14 +111,12 @@ public class SmsCodeDialog extends Dialog {
                     break;
                 case SmsCodeDialog.SMS_SERVER_FAIL:
                     // 服务器错误
-                    ToastUtil.show(dialog.getContext(),
-                            dialog.getContext().getString(R.string.error_server));
+                    ToastUtil.show(dialog.getContext(), dialog.getContext().getString(R.string.error_server));
                     break;
             }
 
         }
     }
-
 
     public SmsCodeDialog(Context context, String phone) {
         this(context, R.style.Dialog);
@@ -130,7 +125,6 @@ public class SmsCodeDialog extends Dialog {
         mHttpClient = new OkHttpClientImpl();
         mHandler = new MyHandler(this);
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -201,7 +195,6 @@ public class SmsCodeDialog extends Dialog {
     }
 
     private void initListeners() {
-
         //  关闭按钮组册监听器
         findViewById(R.id.close).setOnClickListener(new View.OnClickListener() {
 
@@ -223,7 +216,6 @@ public class SmsCodeDialog extends Dialog {
         mVerificationInput.setOnCompleteListener(new VerificationCodeInput.Listener() {
             @Override
             public void onComplete(String code) {
-
                 commit(code);
             }
         });
@@ -238,7 +230,6 @@ public class SmsCodeDialog extends Dialog {
         showLoading();
 
         // 网络请求校验验证码
-
         new Thread() {
             @Override
             public void run() {
@@ -339,15 +330,12 @@ public class SmsCodeDialog extends Dialog {
         dismiss();
         if (!exist) {
             // 用户不存在,进入注册
-            CreatePasswordDialog dialog =
-                    new CreatePasswordDialog(getContext(), mPhone);
+            CreatePasswordDialog dialog = new CreatePasswordDialog(getContext(), mPhone);
             dialog.show();
-
         } else {
             // 用户存在 ，进入登录
             LoginDialog dialog = new LoginDialog(getContext(), mPhone);
             dialog.show();
-
         }
     }
 }
